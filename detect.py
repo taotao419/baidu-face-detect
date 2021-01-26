@@ -43,9 +43,10 @@ class BaiduPicIndentify:
             age = json_result['result']['face_list'][0]['age']
             beauty = json_result['result']['face_list'][0]['beauty']
             os.rename(self.img_src, self.img_src.replace('avatar', str(beauty)))
-            #f = open("index.tsv", 'a+')
-            #f.write("{}\t{}\t{}\n".format(self.img_src, age, beauty))
-            #f.close()
+            # f = open("index.tsv", 'a+')
+            # f.write("{}\t{}\t{}\n".format(self.img_src, age, beauty))
+            # f.close()
+            print("agent code :", self.img_src)
             print("图片中包含人脸数：", json_result['result']['face_num'])
             print("图片中包含人物年龄：", json_result['result']['face_list'][0]['age'])
             print("图片中包含人物颜值评分：", json_result['result']['face_list'][0]['beauty'])

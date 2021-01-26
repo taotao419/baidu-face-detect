@@ -171,6 +171,8 @@ try:
               'SH79866', 'SH79887', 'SH79888', 'SH79898', 'SH79938', 'SH79960', 'SH79961', 'SH79981', 'SH79993']
     driver.implicitly_wait(10)  # seconds
     for agent in agents:
+        if agent < 'SH72182':
+            continue
         print(' Start... https://uat.manutouch.com.cn/awsnetbeta/Authentication/Login')
         driver.get('https://uat.manutouch.com.cn/awsnetbeta/Authentication/Login')
         driver.find_element_by_id("UserId").send_keys(agent)
@@ -180,7 +182,10 @@ try:
         picture_path = '/Users/zkl/Code/Python/ScreenShot/avatar_' + agent + '.png'
         driver.save_screenshot(picture_path)
         baiduDetect = detect.BaiduPicIndentify(picture_path)
-        baiduDetect.detect_face()
+        try:
+            baiduDetect.detect_face()
+        except:
+            print('detect face failed')
         time.sleep(3)
 
     print("End successful...")
